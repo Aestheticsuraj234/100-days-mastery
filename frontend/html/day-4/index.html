@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>Day-4 of HTML</title>
+  </head>
+  <body>
+   
+    <!-- <h1>Welcome to day-4</h1> -->
+
+    <!-- <form action="#">
+        <input type="hidden" name="userID" value="12345">
+        <input type="text" name="name" placeholder="Enter your name" value="suraj">
+        <button type="submit">Submit</button>
+      </form> -->
+
+    <form>
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        autofocus
+        autocomplete="username"
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        autocomplete="email"
+        disabled
+      />
+    
+      <input type="text" value="suraj234" readonly />
+      <button type="submit">Login</button>
+    </form>
+
+    <details>
+      <summary>Click to expand</summary>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem
+        ducimus consequatur fugit aperiam qui blanditiis. Quos laudantium modi
+        reprehenderit vel magni culpa illo obcaecati ad id ducimus. Voluptates,
+        at soluta.
+      </p>
+    </details>
+
+    <progress value="90" max="100"></progress>
+    <meter value="20" min="0" max="100">75%</meter>
+
+    <dialog id="myDialog">
+      <p>This is a modal dialog.</p>
+      <button onclick="document.getElementById('myDialog').close()">
+        Close
+      </button>
+    </dialog>
+    <button onclick="document.getElementById('myDialog').showModal()">
+      Open Dialog
+    </button>
+  </body>
+</html>
+
+<!-- 
+1. value
+2. autofoucs , autocomplete 
+3. disable
+4. readonly
+-->
