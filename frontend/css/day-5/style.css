@@ -1,0 +1,39 @@
+/* 1. Universal Selector */
+*{
+    margin: 3px;
+    
+}
+
+/* 2. Element Selector */
+/* h1{
+    color: brown;
+} */
+
+/* 3. class selector */
+
+.heading{
+    color: red;
+    font-size: 24px;
+}
+
+.container{
+    height: 80vh;
+    width: 80vh;
+    border:2px solid black;
+}
+/* 4. id selector */
+#para {
+    font-size: 12px;
+    color: gray;
+    font-weight: bold;
+}
+
+h1 {
+    /* color: red;       Color name */
+    
+    /* color: #8347cb;   HEX code */
+
+    /* color: rgb(247, 0, 255); RGB */
+
+    /* color: #0088ff; HSL */
+}
