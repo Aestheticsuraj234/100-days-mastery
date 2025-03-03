@@ -1,0 +1,25 @@
+body{
+    background-color: #f4f4f4;
+}
+
+
+@media (max-width:768px) {
+        body{
+            background-color: #cabdbd;
+        }
+  }
+
+
+  /* Mobile View */
+@media (max-width: 480px) {
+    p {
+      font-size: 40px;
+    }
+  }
+  
+  /* Tablet View */
+  @media (min-width: 481px) and (max-width: 768px) {
+    p {
+      font-size: 49px;
+    }
+  }
