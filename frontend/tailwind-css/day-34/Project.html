@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev Portfolio</title>
+    <meta name="description" content="Modern Portfolio with indigo theme" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              indigo: {
+                light: "#C7D2FE",
+                DEFAULT: "#6366F1",
+                dark: "#4338CA",
+              },
+              cream: {
+                light: "#FDFCFB",
+                DEFAULT: "#FFFAF0",
+                dark: "#E2D1C3",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              mono: ["SFMono-Regular", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    />
+
+    <style>
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #c7d2fe;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #6366f1;
+      }
+
+      /* Smooth scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Animations */
+      .fade-in {
+        animation: fadeIn 0.6s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hover-translate {
+        transition: transform 0.3s ease;
+      }
+
+      .hover-translate:hover {
+        transform: translateY(-5px);
+      }
+    </style>
+  </head>
+  <body class="bg-cream-light text-gray-800 font-sans">
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+
+    <header
+      class="sticky top-0 bg-white/80 backdrop-blur-sm border-b border-gray-100 z-50"
+    >
+      <div class="container mx-auto px-6 py-4">
+        <nav class="flex justify-between items-center">
+          <a href="#" class="text-2xl font-extrabold text-indigo"
+            >Dev<span class="text-gray-800">Portfolio</span></a
+          >
+
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="#about"
+              class="hover:text-indigo transition-colors duration-300 font-semibold"
+              >About</a
+            >
+            <a
+              href="#projects"
+              class="hover:text-indigo transition-colors duration-300 font-semibold"
+              >Projects</a
+            >
+            <a
+              href="#skills"
+              class="hover:text-indigo transition-colors duration-300 font-semibold"
+              >Skills</a
+            >
+            <a
+              href="#contact"
+              class="hover:text-indigo transition-colors duration-300 font-semibold"
+              >Contact</a
+            >
+          </div>
+
+          <button
+            id="menu-toggle"
+            class="md:hidden text-gray-800 focus:outline-none"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </nav>
+
+        <div
+          id="mobile-menu"
+          class="md:hidden hidden pt-4 pb-2 transition-all duration-300"
+        >
+          <div class="flex flex-col space-y-3">
+            <a
+              href="#about"
+              class="hover:text-indigo transition-colors duration-300"
+              >About</a
+            >
+            <a
+              href="#projects"
+              class="hover:text-indigo transition-colors duration-300"
+              >Projects</a
+            >
+            <a
+              href="#skills"
+              class="hover:text-indigo transition-colors duration-300"
+              >Skills</a
+            >
+            <a
+              href="#contact"
+              class="hover:text-indigo transition-colors duration-300"
+              >Contact</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section
+      class="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-cream py-20 px-6"
+    >
+      <div class="container mx-auto">
+        <div class="flex flex-col-reverse lg:flex-row items-center">
+          <div class="lg:w-1/2 lg:pr-16 text-center lg:text-left fade-in">
+            <h1 class="text-5xl lg:text-6xl font-bold mb-6">
+              <span class="text-gray-800">Hi, I'm </span>
+              <span class="text-indigo-dark">Jamie</span>
+            </h1>
+            <h2 class="text-2xl lg:text-3xl text-gray-600 mb-8">
+              UI/UX Designer & Web Developer
+            </h2>
+            <p class="text-lg text-gray-600 mb-10 max-w-lg mx-auto lg:mx-0">
+              I craft beautiful, intuitive interfaces and transform them into
+              seamless web experiences.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            >
+              <a
+                href="#projects"
+                class="px-8 py-3 bg-indigo rounded-lg hover:bg-indigo-dark text-white font-medium transition-colors duration-300 shadow-md hover:shadow-lg"
+              >
+                View My Work
+              </a>
+              <a
+                href="#contact"
+                class="px-8 py-3 border-2 border-indigo text-indigo rounded-lg hover:bg-indigo/10 font-medium transition-colors duration-300"
+              >
+                Contact Me
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="lg:w-1/2 mb-10 lg:mb-0 fade-in"
+            style="animation-delay: 0.3s"
+          >
+            <div class="relative">
+              <div
+                class="absolute inset-0 bg-indigo/20 rounded-full blur-3xl transform -translate-x-10 translate-y-10"
+              ></div>
+              <img
+                src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+                alt="Profile Image"
+                class="relative z-10 w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-white shadow-xl mx-auto"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-20 px-6 bg-white">
+      <div class="container mx-auto">
+        <h2 class="text-3xl lg:text-4xl font-bold text-center mb-16">
+          About
+          <span class="text-indigo">Me</span>
+        </h2>
+
+        <div class="flex flex-col lg:flex-row gap-10 items-center">
+          <div class="lg:w-1/2">
+            <p class="text-lg mb-6 text-gray-600">
+              I'm a passionate designer and developer with 5 years of experience
+              creating beautiful, functional interfaces. My journey began with
+              graphic design before I discovered my love for web development.
+            </p>
+            <p class="text-lg mb-6 text-gray-600">
+              I believe in the power of minimalist design that puts user
+              experience first. Every pixel matters, and every interaction
+              should feel natural and intuitive.
+            </p>
+            <p class="text-lg text-gray-600">
+              When I'm not coding or designing, you'll find me hiking,
+              photographing landscapes, or exploring new coffee shops in the
+              city.
+            </p>
+          </div>
+
+          <div class="lg:w-1/2 grid grid-cols-2 gap-4">
+            <div class="bg-cream p-6 rounded-lg shadow-md hover-translate">
+              <span class="text-indigo text-4xl block mb-2">5+</span>
+              <h3 class="text-lg font-semibold mb-1">Years Experience</h3>
+              <p class="text-gray-500">in design & development</p>
+            </div>
+
+            <div class="bg-cream p-6 rounded-lg shadow-md hover-translate">
+              <span class="text-indigo text-4xl block mb-2">50+</span>
+              <h3 class="text-lg font-semibold mb-1">Projects Completed</h3>
+              <p class="text-gray-500">for happy clients</p>
+            </div>
+
+            <div class="bg-cream p-6 rounded-lg shadow-md hover-translate">
+              <span class="text-indigo text-4xl block mb-2">20+</span>
+              <h3 class="text-lg font-semibold mb-1">UI/UX Solutions</h3>
+              <p class="text-gray-500">research-based designs</p>
+            </div>
+
+            <div class="bg-cream p-6 rounded-lg shadow-md hover-translate">
+              <span class="text-indigo text-4xl block mb-2">10+</span>
+              <h3 class="text-lg font-semibold mb-1">Design Awards</h3>
+              <p class="text-gray-500">industry recognition</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="py-20 px-6 bg-cream">
+      <div class="container mx-auto">
+        <h2 class="text-3xl lg:text-4xl font-bold text-center mb-4">
+          My <span class="text-indigo">Projects</span>
+        </h2>
+        <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
+          A selection of my recent work spanning web design, UI/UX, and
+          development projects.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-md hover-translate"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+              alt="E-commerce Website"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Modern E-Commerce Platform</h3>
+              <p class="text-gray-600 mb-4">
+                Complete e-commerce solution with custom admin dashboard and
+                analytics.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="px-3 py-1 bg-indigo/10 text-indigo-dark text-sm rounded-full"
+                  >UI/UX</span
+                >
+                <span
+                  class="px-3 py-1 bg-indigo/10 text-indigo-dark text-sm rounded-full"
+                  >Frontend</span
+                >
+                <span
+                  class="px-3 py-1 bg-indigo/10 text-indigo-dark text-sm rounded-full"
+                  >E-commerce</span
+                >
+              </div>
+              <a
+                href="#"
+                class="text-indigo font-medium hover:text-indigo-dark transition-colors duration-300"
+                >View Project →</a
+              >
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-md hover-translate"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+              alt="Mobile App Design"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Fitness Tracking App</h3>
+              <p class="text-gray-600 mb-4">
+                Mobile app design with intuitive dashboards and progress
+                tracking features.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="px-3 py-1 bg-indigo/10 text-indigo-dark text-sm rounded-full"
+                  >Mobile</span
+                >
+                <span
+                  class="px-3 py-1 bg-indigo/10 text-indigo-dark text-sm rounded-full"
+                  >UI Design</span
+                >
+                <span
+                  class="px-3 py-1 bg-indigo/10 text-indigo-dark text-sm rounded-full"
+                  >Health</span
+                >
+              </div>
+              <a
+                href="#"
+                class="text-indigo font-medium hover:text-indigo-dark transition-colors duration-300"
+                >View Project →</a
+              >
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-md hover-translate"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1547119957-637f8679db1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1464&q=80"
+              alt="Dashboard Design"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Analytics Dashboard</h3>
+              <p class="text-gray-600 mb-4">
+                Complex data visualization and reporting platform for enterprise
+                clients.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="px-3 py-1 bg-indigo/10 text-indigo-dark text-sm rounded-full"
+                  >Dashboard</span
+                >
+                <span
+                  class="px-3 py-1 bg-indigo/10 text-indigo-dark text-sm rounded-full"
+                  >Analytics</span
+                >
+                <span
+                  class="px-3 py-1 bg-indigo/10 text-indigo-dark text-sm rounded-full"
+                  >Web App</span
+                >
+              </div>
+              <a
+                href="#"
+                class="text-indigo font-medium hover:text-indigo-dark transition-colors duration-300"
+                >View Project →</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="py-20 px-6 bg-white">
+      <div class="container mx-auto">
+        <h2 class="text-3xl lg:text-4xl font-bold text-center mb-4">
+          My <span class="text-indigo">Skills</span>
+        </h2>
+        <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
+          Technologies and skills I've mastered throughout my career.
+        </p>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg-grid-cols-4 gap-6">
+          <div class="bg-cream p-6 rounded-lg text-center hover-translate">
+            <div
+              class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-indigo/10 rounded-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-8 h-8 text-indigo"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">UI/UX Design</h3>
+            <p class="text-gray-600">Figma, Adobe XD, Sketch</p>
+          </div>
+
+          <!-- Skill 2 -->
+          <div class="bg-cream p-6 rounded-lg text-center hover-translate">
+            <div
+              class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-indigo/10 rounded-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-8 h-8 text-indigo"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Frontend</h3>
+            <p class="text-gray-600">HTML, CSS, JavaScript</p>
+          </div>
+
+          <!-- Skill 3 -->
+          <div class="bg-cream p-6 rounded-lg text-center hover-translate">
+            <div
+              class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-indigo/10 rounded-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-8 h-8 text-indigo"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Backend</h3>
+            <p class="text-gray-600">Node.js, Express, MongoDB</p>
+          </div>
+
+          <!-- Skill 4 -->
+          <div class="bg-cream p-6 rounded-lg text-center hover-translate">
+            <div
+              class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-indigo/10 rounded-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-8 h-8 text-indigo"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Design Tools</h3>
+            <p class="text-gray-600">Photoshop, Illustrator</p>
+          </div>
+
+          <!-- Skill 5 -->
+          <div class="bg-cream p-6 rounded-lg text-center hover-translate">
+            <div
+              class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-indigo/10 rounded-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-8 h-8 text-indigo"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Responsive Design</h3>
+            <p class="text-gray-600">Mobile-First, Adaptive UI</p>
+          </div>
+
+          <!-- Skill 6 -->
+          <div class="bg-cream p-6 rounded-lg text-center hover-translate">
+            <div
+              class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-indigo/10 rounded-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-8 h-8 text-indigo"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Frameworks</h3>
+            <p class="text-gray-600">React, Vue, Tailwind CSS</p>
+          </div>
+
+          <!-- Skill 7 -->
+          <div class="bg-cream p-6 rounded-lg text-center hover-translate">
+            <div
+              class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-indigo/10 rounded-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-8 h-8 text-indigo"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Security</h3>
+            <p class="text-gray-600">Web Security, Authentication</p>
+          </div>
+
+          <!-- Skill 8 -->
+          <div class="bg-cream p-6 rounded-lg text-center hover-translate">
+            <div
+              class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-indigo/10 rounded-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-8 h-8 text-indigo"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Testing</h3>
+            <p class="text-gray-600">Jest, User Testing</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 px-6 bg-cream-dark">
+      <div class="container mx-auto">
+        <h2 class="text-3xl lg:text-4xl font-bold text-center mb-4">
+          Client <span class="text-indigo">Testimonials</span>
+        </h2>
+        <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
+          What my clients have to say about working with me.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-xl shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="h-12 w-12 rounded-full overflow-hidden mr-4">
+              <img
+                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1361&q=80"
+                alt="Client"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <h3 class="font-semibold">Sarah Johnson</h3>
+              <p class="text-gray-500 text-sm">Marketing Director, TechCorp</p>
+            </div>
+          </div>
+          <div class="mb-4">⭐⭐⭐⭐⭐⭐</div>
+          <p class="text-gray-600 italic">
+            "Working with Jamie was a game-changer for our company website. The
+            design perfectly captures our brand identity, and the user
+            experience has significantly increased our conversion rates."
+          </p>
+        </div>
+        <div class="bg-white p-8 rounded-xl shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="h-12 w-12 rounded-full overflow-hidden mr-4">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+                alt="Client"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <h3 class="font-semibold">Michael Roberts</h3>
+              <p class="text-gray-500 text-sm">Founder, StartupHub</p>
+            </div>
+          </div>
+          <div class="mb-4">⭐⭐⭐⭐⭐⭐</div>
+          <p class="text-gray-600">
+            "Jamie delivers exceptional quality. From initial concept to final
+            implementation, the attention to detail and creative solutions
+            exceeded our expectations. Highly recommend!"
+          </p>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="bg-white p-8 rounded-xl shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="h-12 w-12 rounded-full overflow-hidden mr-4">
+              <img
+                src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+                alt="Client"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <h3 class="font-semibold">Emily Chen</h3>
+              <p class="text-gray-500 text-sm">Product Manager, FinTech Inc.</p>
+            </div>
+          </div>
+          <div class="mb-4">⭐⭐⭐⭐⭐⭐</div>
+          <p class="text-gray-600">
+            "The app redesign Jamie completed for us resulted in a 40% increase
+            in user engagement. The intuitive interface and clean design have
+            received fantastic feedback from our customers."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-20 px-6 bg-white">
+      <div class="container mx-auto">
+        <h2 class="text-3xl lg:text-4xl font-bold text-center mb-4">
+          Get In <span class="text-indigo">Touch</span>
+        </h2>
+        <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
+          Have a project in mind? Let's bring your ideas to life. Reach out and
+          I'll get back to you soon.
+        </p>
+
+        <div class="bg-cream rounded-xl shadow-md overflow-hidden">
+          <div class="flex flex-col lg:flex-row">
+            <div class="lg:w-1/2 p-8 lg:p-12">
+              <h3 class="text-2xl font-bold mb-6">Send Me a Message</h3>
+
+              <form id="contact-form" class="space-y-6">
+                <div class="space-y-2">
+                    <label for="name" class="block text-gray-700">Name</label>
+                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-coral focus:border-transparent transition">
+                </div>
+                <div class="space-y-2">
+                    <label for="email" class="block text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo focus:border-transparent transition">
+                  </div>
+                  
+                  <div class="space-y-2">
+                    <label for="message" class="block text-gray-700">Message</label>
+                    <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo focus:border-transparent transition"></textarea>
+                  </div>
+
+                  <button type="submit" class="w-full px-6 py-3 bg-indigo text-white font-medium rounded-lg hover:bg-indigo-dark transition-colors duration-300 shadow-md">
+                    Send Message
+                  </button>
+              </form>
+            </div>
+
+            <div class="lg:w-1/2 p-8 lg:p-12 bg-indigo text-white">
+                <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                <div class="space-y-6">
+                    <div class="flex items-center">
+                        <div class="mt-1 mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                              </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-1">Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                          </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <div class="mt-1 mr-4">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 class="font-semibold mb-1">Email</h4>
+                          <p>hello@jamiedesigner.com</p>
+                        </div>
+                      </div>
+                      
+                      <div class="flex items-start">
+                        <div class="mt-1 mr-4">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 class="font-semibold mb-1">Location</h4>
+                          <p>San Francisco, California</p>
+                        </div>
+                      </div>
+
+                      
+                </div>  
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
