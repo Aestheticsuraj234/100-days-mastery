@@ -1,8 +1,7 @@
 import React from 'react'
-import UserGreeting from './components/UserGreeting'
-import Notification from './components/Notification'
-import StatusMessage from './components/Status'
+
 import NameList from './components/NameList'
+import Forms from './components/Forms'
 
 const App = () => {
   const nameList = ["Suraj" , "Karan" , "Jhon Singh" , "Jhonny Depp"]
@@ -16,9 +15,11 @@ const App = () => {
       <NameList name={"Karan"} />
       <NameList name={"Jhon Singh"} />
       <NameList name={"Jhonny Depp"} /> */}
-      {
+      {/* {
         nameList.map((name , index)=>(<NameList key={index} name={name}/>)) 
-      }
+      } */}
+
+      <Forms/>
 
     </div>
   )
