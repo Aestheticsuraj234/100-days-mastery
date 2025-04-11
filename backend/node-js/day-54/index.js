@@ -2,7 +2,8 @@ const EventEmitter = require("events");
 
 const emitter = new EventEmitter();
 
-
+// 8826545277
+// codesnippet3
 // emitter.on("eventname" , cb)
 
 // Hello world
