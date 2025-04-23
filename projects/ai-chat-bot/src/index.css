@@ -2,3 +2,71 @@
 
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+
+@layer base {
+    :root{
+        --toaster-bg:#ffffff;
+        --toaster-bg-dark:#333333;
+    }
+
+    .dark {
+        --toaster-bg:#374151;
+        --toaster-bg-dark:#ffffff;
+    }
+
+    body{
+        @apply antialiased
+    }
+}
+
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-700 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-600;
+  }
+  
+
+  /* prose styling for ai response */
+
+.prose p {
+  margin-bottom: 0.75rem;
+}
+
+.prose ul, .prose ol {
+  margin-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
+.prose pre {
+  @apply bg-gray-100 dark:bg-gray-800 p-3 rounded my-2 overflow-x-auto;
+  font-family: monospace;
+}
+
+.prose code {
+  @apply bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm font-mono;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0;
+}
