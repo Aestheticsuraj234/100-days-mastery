@@ -1,28 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Jockey+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-*{
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Jockey+One&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+html{
+    font-size: 20px;
+}
+
+body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(19, 19, 19);
+    color: white;
+}
+
+.heading{
+    font-size: 40px;
+}
+
+.parent{
+width: 40vw;
+height: 40vh;
+border: 1px solid white;
+background-color: rgb(171, 43, 43);
+
 
 }
 
-.container{
- border: 12px solid sienna;
-    height: 90vh;
-    width: 80vw;
+.child{
+width: 50%;
+height: 60%;
+font-size: 3rem;
+border: 1px solid white;
+background-color: rgb(0, 0, 0);
 }
+
 
 .para{
-    font-size: 16px;
+    font-size: 24px;
     font-weight: bold;
-    color: rgb(38, 183, 22);
-    text-align: center;
-    text-transform: capitalize;
-    text-decoration: wavy underline
-    /* line-height: 2.5em; */
-    /* letter-spacing: 1px;  */
-    /* word-spacing: 5px; */
+    line-height: 1.5;
+    letter-spacing: 1px;
+    word-spacing: 5px;
+    font-family: "Dancing Script", cursive;
+    text-align: end;
+    text-transform: uppercase;
+    text-decoration: wavy underline;
+    text-shadow: 2px 2px 5px rgb(170, 97, 97);
+    
 }
-
-/* fonts related properties */
