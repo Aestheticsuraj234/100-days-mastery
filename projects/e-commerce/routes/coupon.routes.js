@@ -1,5 +1,5 @@
 import express from "express";
-import { protectedRoute } from "../middleware/auth.middlewaree";
+import { protectedRoute } from "../middleware/auth.middlewaree.js";
 import { getCoupon, validateCoupon } from "../controllers/coupon.controller.js";
 
 
