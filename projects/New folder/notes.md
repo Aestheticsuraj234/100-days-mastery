@@ -1,144 +1,162 @@
-### 1. **User Schema**
-
-```js
-// models/User.js
-import mongoose from 'mongoose';
-
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    lowercase: true
-  },
-  mobileNumber: {
-    type: String,
-    required: true
-  },
-  role: {
-    type: [String],
-    enum: ['employer', 'candidate'],
-    required: true
-  }
-}, { timestamps: true });
-
-export default mongoose.model('User', userSchema);
-```
+Here's a full set of **Job Application Controllers** to manage how **candidates apply to jobs** in your MERN job portal. This includes application creation, fetching applications by user or job, and protection so users can’t apply multiple times.
 
 ---
 
-### 2. **Company Schema**
+## ✅ Assumptions
 
-```js
-// models/Company.js
-import mongoose from 'mongoose';
+* Application Model:
 
-const companySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  description: String,
-  companySize: String,
-  location: String,
-  address: String,
-  emails: [String],
-  createdBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true  // should be an employer
-  }
-}, { timestamps: true });
+  * `job` (ObjectId ref to Job)
+  * `candidate` (ObjectId ref to User)
+  * `resume`, `coverLetter` (optional fields)
+  * `status` (e.g., `applied`, `reviewed`, `accepted`, `rejected`)
+  * `appliedAt`
 
-export default mongoose.model('Company', companySchema);
-```
+* Only users with the role `candidate` can apply.
 
 ---
 
-### 3. **Job Schema**
+## ✅ `controllers/applicationController.js`
 
 ```js
-// models/Job.js
-import mongoose from 'mongoose';
+// controllers/applicationController.js
+import Application from '../models/Application.js';
+import Job from '../models/Job.js';
 
-const jobSchema = new mongoose.Schema({
-  company: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Company',
-    required: true
-  },
-  jobTitle: {
-    type: String,
-    required: true
-  },
-  jobDesc: {
-    type: String,
-    required: true
-  },
-  tags: [String],
-  salaryRange: {
-    min: Number,
-    max: Number
-  },
-  jobRole: {
-    workLocation: {
-      type: String,
-      enum: ['remote', 'onsite', 'hybrid'],
-      required: true
-    },
-    department: {
-      type: String,
-      required: true
-    },
-    role: {
-      type: String,
-      required: true
-    },
-    jobType: {
-      type: String,
-      enum: ['full-time', 'part-time', 'contract', 'internship'],
-      required: true
+// Apply to a job (Only candidates)
+export const applyToJob = async (req, res) => {
+  try {
+    const { jobId, resume, coverLetter } = req.body;
+
+    if (!req.user || !req.user.role.includes('candidate')) {
+      return res.status(403).json({ message: 'Only candidates can apply to jobs' });
     }
+
+    const job = await Job.findById(jobId);
+    if (!job) return res.status(404).json({ message: 'Job not found' });
+
+    // Prevent duplicate applications
+    const existing = await Application.findOne({ job: jobId, candidate: req.user.id });
+    if (existing) {
+      return res.status(400).json({ message: 'You have already applied for this job' });
+    }
+
+    const application = await Application.create({
+      job: jobId,
+      candidate: req.user.id,
+      resume,
+      coverLetter,
+      status: 'applied',
+      appliedAt: new Date()
+    });
+
+    res.status(201).json({ message: 'Applied successfully', application });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
-}, { timestamps: true });
+};
 
-export default mongoose.model('Job', jobSchema);
+// Get applications of logged-in candidate
+export const getMyApplications = async (req, res) => {
+  try {
+    const applications = await Application.find({ candidate: req.user.id })
+      .populate('job', 'jobTitle company')
+      .sort({ appliedAt: -1 });
 
+    res.status(200).json(applications);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
+
+// Get applications for a job (Employer only)
+export const getApplicationsByJob = async (req, res) => {
+  try {
+    const jobId = req.params.jobId;
+    const job = await Job.findById(jobId);
+
+    if (!job) return res.status(404).json({ message: 'Job not found' });
+
+    if (job.createdBy.toString() !== req.user.id) {
+      return res.status(403).json({ message: 'Only the employer who posted this job can view its applications' });
+    }
+
+    const applications = await Application.find({ job: jobId })
+      .populate('candidate', 'name email mobileNumber')
+      .sort({ appliedAt: -1 });
+
+    res.status(200).json(applications);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
+
+// Update application status (Employer only)
+export const updateApplicationStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+    const application = await Application.findById(req.params.id).populate('job');
+
+    if (!application) return res.status(404).json({ message: 'Application not found' });
+
+    if (application.job.createdBy.toString() !== req.user.id) {
+      return res.status(403).json({ message: 'Unauthorized to update this application' });
+    }
+
+    application.status = status;
+    await application.save();
+
+    res.status(200).json({ message: 'Status updated', application });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
 ```
 
 ---
 
-### 4. **Application Schema**
+## ✅ `routes/applicationRoutes.js`
+
+```js
+// routes/applicationRoutes.js
+import express from 'express';
+import {
+  applyToJob,
+  getMyApplications,
+  getApplicationsByJob,
+  updateApplicationStatus
+} from '../controllers/applicationController.js';
+import { protect } from '../middleware/authMiddleware.js';
+
+const router = express.Router();
+
+router.post('/', protect, applyToJob);                    // Candidate applies
+router.get('/my', protect, getMyApplications);            // Candidate views own apps
+router.get('/job/:jobId', protect, getApplicationsByJob); // Employer views apps for a job
+router.put('/:id', protect, updateApplicationStatus);     // Employer updates status
+
+export default router;
+```
+
+---
+
+## ✅ Sample `Application` Mongoose Schema (if you need it)
 
 ```js
 // models/Application.js
 import mongoose from 'mongoose';
 
 const applicationSchema = new mongoose.Schema({
-  candidate: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  job: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Job',
-    required: true
-  },
-  appliedAt: {
-    type: Date,
-    default: Date.now
-  },
+  job: { type: mongoose.Schema.Types.ObjectId, ref: 'Job', required: true },
+  candidate: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  resume: { type: String },
+  coverLetter: { type: String },
   status: {
     type: String,
-    enum: ['applied', 'under review', 'rejected', 'accepted'],
+    enum: ['applied', 'reviewed', 'accepted', 'rejected'],
     default: 'applied'
-  }
+  },
+  appliedAt: { type: Date, default: Date.now }
 });
 
 export default mongoose.model('Application', applicationSchema);
@@ -146,9 +164,4 @@ export default mongoose.model('Application', applicationSchema);
 
 ---
 
-### Summary of Relationships:
-
-* **User** can be `employer` or `candidate`.
-* **Employer** creates a **Company**.
-* **Company** posts **Jobs**.
-* **Candidate** applies to **Jobs** through **Applications**.
+Would you like help integrating notifications (email or in-app) for job status changes or new applications?
