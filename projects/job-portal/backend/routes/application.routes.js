@@ -1,6 +1,6 @@
 import express from "express"
-import { protect } from "../middleware/user.middleware"
-import { get } from "mongoose";
+import { protect } from "../middleware/user.middleware.js"
+
 import { applyToJob, getApplicationsByJob, getMyApplications, updateApplicationStatus } from "../controllers/application.controller.js";
 
 const routes = express.Router()

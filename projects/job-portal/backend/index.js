@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv"
 import cookieParser from "cookie-parser";
+import cors from "cors"
 
 import userRoutes from "./routes/user.routes.js"
 import companyRoutes from "./routes/company.routes.js"
@@ -18,6 +19,23 @@ connectDB()
 
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors({
+    origin:"http://localhost:5173",
+    credentials:true
+  }));
+  
+app.use((req, res, next) => {
+  const label = `Request to ${req.method} ${req.originalUrl}`;
+  console.time(label);
+
+  res.on("finish", () => {
+    console.timeEnd(label);
+  });
+
+  next();
+});
+
+
 
 app.get("/" , (req , res)=>{
     res.send("Welcome to JobHunter🔥")
