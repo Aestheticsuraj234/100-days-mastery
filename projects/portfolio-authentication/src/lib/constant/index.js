@@ -78,3 +78,27 @@ export const SKILLS = [
     ]
   }
 ];
+
+
+export const SOCIAL_LINKS = [
+  {
+    name: "GitHub",
+    url: "https://github.com/username",
+    icon: "Github"
+  },
+  {
+    name: "LinkedIn",
+    url: "https://linkedin.com/in/username",
+    icon: "Linkedin"
+  },
+  {
+    name: "Twitter",
+    url: "https://twitter.com/username",
+    icon: "Twitter"
+  },
+  {
+    name: "Email",
+    url: "mailto:email@example.com",
+    icon: "Mail"
+  }
+];
